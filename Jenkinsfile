@@ -13,12 +13,12 @@ pipeline {
     }
     stage('init') {
       steps {
-        sh 'docker run -w /non-prod -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -v `pwd`:/non-prod cytopia/terragrunt:latest init-all'
+        sh 'docker run -w /non-prod -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -v `pwd`:/non-prod cytopia/terragrunt:latest terragrunt  init-all'
       }
     }
     stage('plan') {
       steps {
-        sh 'docker run -w /non-prod -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -v `pwd`:/non-prod cytopia/terragrunt:latest plan-all'
+        sh 'docker run -w /non-prod -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -v `pwd`:/non-prod cytopia/terragrunt:latest terragrunt plan-all'
       }
     }
     stage('approval') {
@@ -31,7 +31,7 @@ pipeline {
     }
     stage('apply') {
       steps {
-        sh 'docker run -w /non-prod -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -v `pwd`:/non-prod cytopia/terragrunt:latest apply-all -auto-approve'
+        sh 'docker run -w /non-prod -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -v `pwd`:/non-prod cytopia/terragrunt:latest terragrunt apply-all -auto-approve'
         cleanWs()
       }
     }
