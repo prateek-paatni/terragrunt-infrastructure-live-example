@@ -18,7 +18,7 @@ pipeline {
     } */
     stage('dependencies') {
       steps {
-        sh 'docker run cytopia/terragrunt:latest apk add --update openssh'
+        sh 'docker run cytopia/terragrunt:latest apk add --update openssh-client'
       }
     }   
     stage('plan') {
