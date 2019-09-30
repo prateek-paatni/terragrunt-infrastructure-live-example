@@ -16,6 +16,11 @@ pipeline {
         sh 'docker run -w /app/non-prod/us-east-1 -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -v `pwd`:/app cytopia/terragrunt:latest terragrunt init-all'
       }
     } */
+    stage('dependencies') {
+      steps {
+        sh 'docker run cytopia/terragrunt:latest apk add --update openssh'
+      }
+    }   
     stage('plan') {
       steps {
         sh 'docker run -w /app/non-prod/us-east-1 -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -e TF_VAR_master_password=$TF_VAR_master_password -v `pwd`:/app cytopia/terragrunt:latest terragrunt plan-all'
