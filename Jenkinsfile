@@ -13,7 +13,7 @@ pipeline {
     } */
     stage('checkout') {
       steps {
-        sh 'docker pull cytopia/terragrunt:0.12-0.19'
+        sh 'docker pull bootswithdefer/terragrunt:latest'
       }
     }
     /* stage('init') {
@@ -38,7 +38,7 @@ pipeline {
         -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
         -e TF_VAR_master_password="password" \
         -v `pwd`:/data \
-        cytopia/terragrunt:0.12-0.19 \
+        bootswithdefer/terragrunt:latest \
         terragrunt plan-all --terragrunt-non-interactive'
       }
     }
@@ -63,7 +63,7 @@ pipeline {
         -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
         -e TF_VAR_master_password="password" \
         -v `pwd`:/data \
-        cytopia/terragrunt:0.12-0.19 \
+        bootswithdefer/terragrunt:latest \
         terragrunt apply-all --terragrunt-non-interactive --terragrunt-no-auto-init'
         cleanWs()
       }
