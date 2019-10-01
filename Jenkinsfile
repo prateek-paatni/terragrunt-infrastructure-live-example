@@ -39,7 +39,7 @@ pipeline {
         -e TF_VAR_master_password="password" \
         -v `pwd`:/data \
         cytopia/terragrunt:0.12-0.19 \
-        terragrunt plan-all --terragrunt-non-interactive'
+        terragrunt plan-all --terragrunt-non-interactive --terragrunt-no-auto-init'
       }
     }
     }
@@ -64,7 +64,7 @@ pipeline {
         -e TF_VAR_master_password="password" \
         -v `pwd`:/data \
         cytopia/terragrunt:0.12-0.19 \
-        terragrunt apply-all --terragrunt-non-interactive'
+        terragrunt apply-all --terragrunt-non-interactive --terragrunt-no-auto-init'
         cleanWs()
       }
       } 
