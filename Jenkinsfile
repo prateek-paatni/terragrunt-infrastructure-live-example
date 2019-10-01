@@ -33,7 +33,7 @@ pipeline {
                 credentialsId: 'tfdev1-user',
                 accessKeyVariable: 'AWS_ACCESS_KEY_ID',
                 secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-        sh 'docker run -w /app/non-prod/us-east-1 -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -e TF_VAR_master_password="password" -v `pwd`:/app cytopia/terragrunt:latest terragrunt plan-all'
+        sh 'docker run -w /app/non-prod/us-east-1 -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -e TF_VAR_master_password="password" -v `pwd`:/app cytopia/terragrunt:latest terragrunt plan-all --terragrunt-non-interactive'
       }
     }
     }
@@ -47,7 +47,7 @@ pipeline {
     }
     stage('apply') {
       steps {
-        sh 'docker run -w /app/non-prod/us-east-1 -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -e TF_VAR_master_password=$TF_VAR_master_password -v `pwd`:/app cytopia/terragrunt:latest terragrunt apply-all -auto-approve'
+        sh 'docker run -w /app/non-prod/us-east-1 -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -e TF_VAR_master_password=$TF_VAR_master_password -v `pwd`:/app cytopia/terragrunt:latest terragrunt apply-all -auto-approve --terragrunt-non-interactive'
         cleanWs()
       }
     }
