@@ -2,7 +2,7 @@
 # working directory, into a temporary folder, and execute your Terraform commands in that folder.
 terraform {
   #source = "git::git@github.com:gruntwork-io/terragrunt-infrastructure-modules-example.git//asg-elb-service?ref=v0.1.0"
-  source = "github.com/gruntwork-io/terragrunt-infrastructure-modules-example.git//asg-elb-service?ref=v0.1.0"
+  source = "github.com/prateek-paatni/terragrunt-infrastructure-modules-example.git//asg-elb-service?ref=v0.1.1"
 }
 
 # Include all settings from the root terragrunt.hcl file
