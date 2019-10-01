@@ -5,9 +5,14 @@ pipeline {
     }  
   }
   stages {
+     stage('delete files from workspace') {
+      steps {
+        sh 'ls -l'
+        sh 'sudo rm -rf ./*'
+      }
+    }
     stage('checkout') {
       steps {
-        cleanWs()
         checkout scm
         sh 'docker pull cytopia/terragrunt:latest'
       }
