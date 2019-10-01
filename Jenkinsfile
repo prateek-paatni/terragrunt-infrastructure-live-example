@@ -64,7 +64,7 @@ pipeline {
         -e TF_VAR_master_password="password" \
         -v `pwd`:/data \
         cytopia/terragrunt:0.12-0.19 \
-        terragrunt apply --terragrunt-non-interactive --terragrunt-no-auto-init'
+        terragrunt apply -auto-approve --terragrunt-non-interactive --terragrunt-no-auto-init'
         cleanWs()
       }
       } 
