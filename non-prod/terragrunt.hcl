@@ -4,7 +4,7 @@ remote_state {
 
   config = {
     encrypt        = true
-    bucket         = "terragrunt-prateek-terraform-state-non-prod"
+    bucket         = "tg2073-prateek-terraform-state-non-prod"
     key            = "${path_relative_to_include()}/terraform.tfstate"
     region         = "us-east-1"
     dynamodb_table = "terraform-locks"
@@ -16,6 +16,6 @@ remote_state {
 inputs = {
   aws_region                   = "us-east-1"
   aws_profile                  = "non-prod"
-  tfstate_global_bucket        = "terragrunt-prateek-terraform-state-non-prod"
+  tfstate_global_bucket        = "tg2073-prateek-terraform-state-non-prod"
   tfstate_global_bucket_region = "us-east-1"
 }
