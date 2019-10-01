@@ -7,6 +7,7 @@ pipeline {
   stages {
     stage('checkout') {
       steps {
+        cleanWs()
         checkout scm
         sh 'docker pull cytopia/terragrunt:latest'
       }
